@@ -1,0 +1,20 @@
+[package]
+name = "health_reminders"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "signal"] }
+clap = { version = "4", features = ["derive"] }
+humantime = "2.1"
+chrono = "0.4.41"
+anyhow = "1.0.99"
+
+# Notifications
+# Linux/FreeBSD (DBus)
+[target.'cfg(any(target_os = "linux", target_os = "freebsd"))'.dependencies]
+notify-rust = "4"
+
+# macOS
+[target.'cfg(target_os = "macos")'.dependencies]
+mac-notification-sys = "0.6"
