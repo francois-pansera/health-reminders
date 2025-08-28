@@ -98,7 +98,7 @@ async fn remind(title: &str, body: &str) {
     #[cfg(target_os = "macos")]
     {
         use mac_notification_sys::*;
-        if let Err(e) = send_notification(title, &Notification::default(), body, None) {
+        if let Err(e) = send_notification(title, None, body, None) {
             eprintln!("(macOS notification failed: {e})");
         }
     }
